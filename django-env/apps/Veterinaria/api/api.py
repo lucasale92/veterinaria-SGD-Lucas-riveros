@@ -4,6 +4,7 @@ from apps.Veterinaria.api.serializer import ClienteSerializer
 from rest_framework.decorators import api_view
 from apps.Veterinaria.models import Cliente
 from rest_framework import status
+from apps.Veterinaria.authentication_mixins import Authentication
 
 @api_view(['GET', 'POST'])
 def cliente_api_view(request):

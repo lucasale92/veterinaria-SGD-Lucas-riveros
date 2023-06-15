@@ -5,11 +5,23 @@ from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from apps.Veterinaria.api.serializer import UserTokenSerializers
-
 from rest_framework.views import APIView
 from datetime import datetime
 
-
+class UserToken(APIView):
+    def post(self, request, *args, **kwargs):
+        try:
+            user_token = Token.objects.get(
+                user = UserTokenSerializers().Meta.objects.filter(username = username).first()
+            )
+            return Response({
+                'token': user_token.key
+            })
+        except:
+            return Response({
+                'error': 'credenciales enviadas incorrectas.'
+            }, status= status.HTTP_400_BAD_REQUEST)
+            
 class Login(ObtainAuthToken):
     
     def post(self, request, *args, **kwargs):

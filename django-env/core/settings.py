@@ -44,7 +44,7 @@ SWAGGER_SETTINGS ={
     'DOC.EXPANSION': 'none'
 }
 
-TOKEN_EXPIRED_AFTER_SECONDS = 10
+TOKEN_EXPIRED_AFTER_SECONDS = 900
  
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -112,6 +112,15 @@ TIME_ZONE = 'America/Buenos_Aires'
 USE_I18N = True
 
 USE_TZ = True
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000"
+]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000"
+]
+
 
 
 # Static files (CSS, JavaScript, Images)
