@@ -8,6 +8,8 @@ from django.utils import timezone
 
 #Clase Cliente
 class Cliente(models.Model):
+    username = models.CharField(max_length = 255, unique = True, null= True)
+    password = models.CharField(max_length = 10, unique = True, null= True)
     dni = models.PositiveIntegerField(verbose_name="D.N.I", unique=True, blank=True)
     nombre= models.CharField(verbose_name="Nombre/s", max_length=30)
     apellido=models.CharField(verbose_name="Apellido/s", max_length=30)
@@ -26,38 +28,38 @@ class Cliente(models.Model):
         db_table = 'cliente'
         ordering = ['id']
          
-#Clase Mascota
-class Mascota(models.Model):
-    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, verbose_name= "propietario" )
-    numero_chip = models.IntegerField(verbose_name="Numero de chip", unique=True, blank=True)
-    nombre_mascota = models.CharField(verbose_name="Nombre de mascota", max_length=30)
-    tipo_mascota = models.CharField(verbose_name="Tipo de mascota", max_length=30)
-    estado=models.BooleanField(verbose_name="Estado", default=True)
+# #Clase Mascota
+# class Mascota(models.Model):
+#     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT, verbose_name= "propietario" )
+#     numero_chip = models.IntegerField(verbose_name="Numero de chip", unique=True, blank=True)
+#     nombre_mascota = models.CharField(verbose_name="Nombre de mascota", max_length=30)
+#     tipo_mascota = models.CharField(verbose_name="Tipo de mascota", max_length=30)
+#     estado=models.BooleanField(verbose_name="Estado", default=True)
 
-    def __str__(self):
-        return f"{self.tipo_mascota}"
+#     def __str__(self):
+#         return f"{self.tipo_mascota}"
     
-    class Meta:
-        verbose_name =  'Mascota'
-        verbose_name_plural =  'Mascotas'
-        db_table = 'mascota'
-        ordering = ['id']
+#     class Meta:
+#         verbose_name =  'Mascota'
+#         verbose_name_plural =  'Mascotas'
+#         db_table = 'mascota'
+#         ordering = ['id']
 
-#Clase Historia Clinica
-class HistoriaClinica(models.Model):
-    # hacer nomenclador de tipo de mascota 
-    mascota = models.ForeignKey(Mascota, on_delete=models.PROTECT, verbose_name= 'mascota')
-    fecha_consulta=models.DateField(verbose_name="Fecha de consulta",default=timezone.now() , blank=True)
-    observaciones = models.TextField(verbose_name= "Observaciones", max_length=500)
-    estado=models.BooleanField(verbose_name="Estado", default=True)
+# #Clase Historia Clinica
+# class HistoriaClinica(models.Model):
+#     # hacer nomenclador de tipo de mascota 
+#     mascota = models.ForeignKey(Mascota, on_delete=models.PROTECT, verbose_name= 'mascota')
+#     fecha_consulta=models.DateField(verbose_name="Fecha de consulta",default=timezone.now() , blank=True)
+#     observaciones = models.TextField(verbose_name= "Observaciones", max_length=500)
+#     estado=models.BooleanField(verbose_name="Estado", default=True)
 
-    def __str__(self):
-        return f"{self.fecha_consulta}"
+#     def __str__(self):
+#         return f"{self.fecha_consulta}"
     
-    class Meta:
-        verbose_name =  'Historia clinica'
-        verbose_name_plural =  'Historias clinicas'
-        db_table = 'historia_clinica'
-        ordering = ['id']
+#     class Meta:
+#         verbose_name =  'Historia clinica'
+#         verbose_name_plural =  'Historias clinicas'
+#         db_table = 'historia_clinica'
+#         ordering = ['id']
         
 

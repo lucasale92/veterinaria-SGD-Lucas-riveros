@@ -45,6 +45,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('logout/', Logout.as_view(), name = 'logout'),
     path('refresh-token/', UserToken.as_view(), name = 'refresh_token'),
-    path('veterinaria/', include('apps.Veterinaria.api.urls')),
-    path('', Login.as_view(), name = 'login')
+    path('cliente/', include('apps.Veterinaria.api.routers')),
+    path('login/', Login.as_view(), name = 'login'),
 ]
